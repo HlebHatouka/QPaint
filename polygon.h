@@ -1,13 +1,13 @@
 #ifndef POLYGON_H
 #define POLYGON_H
 
-#include "figure.h"
+#include "shape.h"
 #include <QGraphicsObject>
 #include <QVector>
 #include <algorithm>
 //#include <bits/stdc++.h>
 
-class Polygon : public Figure
+class Polygon : public Shape
 {
     Q_OBJECT
 

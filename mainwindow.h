@@ -4,7 +4,7 @@
 #include <QMainWindow>
 #include <QWidget>
 #include <QGraphicsView>
-#include "figure.h"
+#include "shape.h"
 #include "paintdesk.h"
 
 namespace Ui {

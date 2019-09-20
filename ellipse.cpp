@@ -1,6 +1,6 @@
 #include "ellipse.h"
 
-Ellipse::Ellipse(QPointF point) : Figure(point)
+Ellipse::Ellipse(QPointF point) : Shape(point)
 {
     Q_UNUSED(point)
 }

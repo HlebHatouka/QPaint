@@ -31,11 +31,11 @@ public:
 private:
     Mode mode;
     QPointF  first_touch;
-    Figure *temp_Figure;
+    Shape *temp_Shape;
     QGraphicsLineItem *line;
     QList<QGraphicsLineItem *> sides_of_Polygon;
-    void addItemToDesk(QGraphicsSceneMouseEvent *event, Figure *temp_Figure);
-    void uniteFiguresWithLine(QPointF &&second_touch);
+    void addItemToDesk(QGraphicsSceneMouseEvent *event, Shape *temp_Shape);
+    void uniteShapesWithLine(QPointF &&second_touch);
 
     void mousePressEvent(QGraphicsSceneMouseEvent * event);
     void mouseMoveEvent(QGraphicsSceneMouseEvent *event);

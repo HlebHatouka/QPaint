@@ -1,5 +1,5 @@
-#ifndef FIGURE_H
-#define FIGURE_H
+#ifndef Shape_H
+#define Shape_H
 
 #include <QGraphicsObject>
 #include <QGraphicsSceneMouseEvent>
@@ -8,13 +8,13 @@
 #include <QVector>
 //#include <QCursor>
 
-class Figure : public QGraphicsObject
+class Shape : public QGraphicsObject
 {
     Q_OBJECT
 
 public:
-    explicit Figure(QPointF point, QObject *parent = nullptr);
-    ~Figure();
+    explicit Shape(QPointF point, QObject *parent = nullptr);
+    ~Shape();
 
     QPointF getStartPoint() const;
     QPointF getEndPoint() const;
@@ -45,4 +45,4 @@ private:
 
 };
 
-#endif // FIGURE_H
+#endif // Shape_H

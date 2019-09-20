@@ -1,9 +1,9 @@
 #ifndef ELLIPSE_H
 #define ELLIPSE_H
 
-#include "figure.h"
+#include "shape.h"
 
-class Ellipse : public Figure
+class Ellipse : public Shape
 {
     Q_OBJECT
 

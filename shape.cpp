@@ -1,6 +1,6 @@
-#include "figure.h"
+#include "shape.h"
 
-Figure::Figure(QPointF point, QObject *parent) :
+Shape::Shape(QPointF point, QObject *parent) :
     QGraphicsObject()
 {
     this->setStartPoint(mapFromScene(point));
@@ -9,43 +9,42 @@ Figure::Figure(QPointF point, QObject *parent) :
     Q_UNUSED(parent)
 }
 
-Figure::~Figure()
+Shape::~Shape()
 {
-
 }
 
-void Figure::setStartPoint(const QPointF point)
+void Shape::setStartPoint(const QPointF point)
 {
     start_point = mapFromScene(point);
 }
 
-void Figure::setEndPoint(const QPointF point)
+void Shape::setEndPoint(const QPointF point)
 {
     end_point = mapFromScene(point);
 }
 
-QPointF Figure::getStartPoint() const
+QPointF Shape::getStartPoint() const
 {
     return start_point;
 }
 
-QPointF Figure::getEndPoint() const
+QPointF Shape::getEndPoint() const
 {
     return end_point;
 }
 
-QRectF Figure::boundingRect() const
+QRectF Shape::boundingRect() const
 {
     return QRectF((getEndPoint().x() > getStartPoint().x() ? getStartPoint().x() : getEndPoint().x()),
                   (getEndPoint().y() > getStartPoint().y() ? getStartPoint().y() : getEndPoint().y()),
                   qAbs(getEndPoint().x() - getStartPoint().x()),
                   qAbs(getEndPoint().y() - getStartPoint().y()));
 }
-void Figure::updatePoints()
+void Shape::updatePoints()
 {
 
 }
-void Figure::addLine(QGraphicsLineItem *line, bool is_first)
+void Shape::addLine(QGraphicsLineItem *line, bool is_first)
 {
 /*
     if(is_first)
@@ -57,7 +56,7 @@ void Figure::addLine(QGraphicsLineItem *line, bool is_first)
     moveLineToCenter(QPointF());
 }
 
-QVariant Figure::itemChange(GraphicsItemChange change, const QVariant &value)
+QVariant Shape::itemChange(GraphicsItemChange change, const QVariant &value)
 {
     if (change == ItemPositionChange && scene())
     {
@@ -68,7 +67,7 @@ QVariant Figure::itemChange(GraphicsItemChange change, const QVariant &value)
     return QGraphicsItem::itemChange(change, value);
 }
 
-void Figure::moveLineToCenter(QPointF new_pos)
+void Shape::moveLineToCenter(QPointF new_pos)
 {
     if(!added_lines.isEmpty())
     {

@@ -1,6 +1,6 @@
 #include "star.h"
 
-Star::Star(QPointF point) : Figure(point)
+Star::Star(QPointF point) : Shape(point)
 {
     Q_UNUSED(point)
 }

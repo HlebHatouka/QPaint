@@ -1,6 +1,6 @@
 #include "polygon.h"
 
-Polygon::Polygon(QPointF point) : Figure(point)
+Polygon::Polygon(QPointF point) : Shape(point)
 {
     polygon_ended = false;
     left_up_pointRect = QPointF();

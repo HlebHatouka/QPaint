@@ -27,19 +27,19 @@ CONFIG += c++1z
 SOURCES += \
         main.cpp \
         mainwindow.cpp \
-    figure.cpp \
     paintdesk.cpp \
     rectangle.cpp \
     ellipse.cpp \
+    shape.cpp \
     star.cpp \
     polygon.cpp
 
 HEADERS += \
         mainwindow.h \
-    figure.h \
     paintdesk.h \
     rectangle.h \
     ellipse.h \
+    shape.h \
     star.h \
     polygon.h
 

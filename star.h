@@ -1,11 +1,11 @@
 #ifndef STAR_H
 #define STAR_H
 
-#include "figure.h"
+#include "shape.h"
 #include <QGraphicsObject>
 #include <cmath>
 
-class Star : public Figure
+class Star : public Shape
 {
     Q_OBJECT
 

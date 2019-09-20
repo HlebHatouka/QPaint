@@ -6,7 +6,7 @@ PaintDesk::PaintDesk(QObject *parent) : QGraphicsScene(parent)
 {
     setMode(PaintDesk::NoMode);
     first_touch = QPointF();
-    temp_Figure = nullptr;
+    temp_Shape = nullptr;
     line = nullptr;
     sides_of_Polygon = QList<QGraphicsLineItem *>();
 }
@@ -32,27 +32,27 @@ void PaintDesk::setFirstTouchIsNull()
     this->first_touch = QPointF();
 }
 
-void PaintDesk::addItemToDesk(QGraphicsSceneMouseEvent *event = nullptr, Figure *temp_Figure = nullptr)
+void PaintDesk::addItemToDesk(QGraphicsSceneMouseEvent *event = nullptr, Shape *temp_Shape = nullptr)
 {
-    if(event != nullptr && temp_Figure != nullptr)
+    if(event != nullptr && temp_Shape != nullptr)
     {
-        this->temp_Figure = temp_Figure;
-        this->temp_Figure->setPos(event->pos());
+        this->temp_Shape = temp_Shape;
+        this->temp_Shape->setPos(event->pos());
     }
-    this->addItem(this->temp_Figure);
-    this->temp_Figure->setFlags(QGraphicsItem::ItemIsMovable);
-    this->temp_Figure->setFlag(QGraphicsItem::ItemSendsScenePositionChanges);
+    this->addItem(this->temp_Shape);
+    this->temp_Shape->setFlags(QGraphicsItem::ItemIsMovable);
+    this->temp_Shape->setFlag(QGraphicsItem::ItemSendsScenePositionChanges);
 }
 
-void PaintDesk::uniteFiguresWithLine(QPointF &&second_touch)
+void PaintDesk::uniteShapesWithLine(QPointF &&second_touch)
 {
-    Figure  *first_Figure = (dynamic_cast<Figure *>(this->items(first_touch).first()));
-    Figure  *second_Figure = (dynamic_cast<Figure *>(this->items(second_touch).first()));
+    Shape  *first_Shape = (dynamic_cast<Shape *>(this->items(first_touch).first()));
+    Shape  *second_Shape = (dynamic_cast<Shape *>(this->items(second_touch).first()));
 
     this->line = this->addLine(QLineF (first_touch.x(), first_touch.y(),
                                 second_touch.x(), second_touch.y()));
-    first_Figure->addLine(line, true);
-    second_Figure->addLine(line, false);
+    first_Shape->addLine(line, true);
+    second_Shape->addLine(line, false);
     setFirstTouchIsNull();
 }
 
@@ -76,7 +76,7 @@ void PaintDesk::mousePressEvent(QGraphicsSceneMouseEvent *event)
             }
             else if(!(this->items(event->scenePos()).isEmpty()) &&
                     this->items(first_touch).first() != this->items(event->scenePos()).first())
-                uniteFiguresWithLine(event->scenePos());
+                uniteShapesWithLine(event->scenePos());
             break;
         }
         case StarMode:
@@ -98,25 +98,25 @@ void PaintDesk::mousePressEvent(QGraphicsSceneMouseEvent *event)
         {
             if(first_touch.isNull())
             {
-                temp_Figure = new Polygon(event->scenePos());
-                dynamic_cast<Polygon *>(temp_Figure)->setPos(event->pos());
+                temp_Shape = new Polygon(event->scenePos());
+                dynamic_cast<Polygon *>(temp_Shape)->setPos(event->pos());
                 first_touch = event->scenePos();
             }
             else
             {
                 QGraphicsLineItem *side = this->addLine(QLineF (first_touch.x(), first_touch.y(),
                                          event->scenePos().x(), event->scenePos().y()));
-                dynamic_cast<Polygon *>(temp_Figure)->setSide(side);
+                dynamic_cast<Polygon *>(temp_Shape)->setSide(side);
                 sides_of_Polygon.push_back(side);
                 first_touch = event->scenePos();
 
-                if (dynamic_cast<Polygon *>(temp_Figure)->isEnded())
+                if (dynamic_cast<Polygon *>(temp_Shape)->isEnded())
                 {
                     addItemToDesk();
                     for (auto &side : sides_of_Polygon)
                         delete  side;
                     sides_of_Polygon.clear();
-                    temp_Figure = nullptr;
+                    temp_Shape = nullptr;
                     setFirstTouchIsNull();
                 }
             }
@@ -140,7 +140,7 @@ void PaintDesk::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
             break;
         default:
         {
-            temp_Figure->setEndPoint(event->scenePos());
+            temp_Shape->setEndPoint(event->scenePos());
             this->update();
             break;
         }

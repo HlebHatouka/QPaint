@@ -1,10 +1,10 @@
 #ifndef RECTANGLE_H
 #define RECTANGLE_H
 
-#include "figure.h"
+#include "shape.h"
 #include <QGraphicsObject>
 
-class Rectangle : public Figure
+class Rectangle : public Shape
 {
     Q_OBJECT
 

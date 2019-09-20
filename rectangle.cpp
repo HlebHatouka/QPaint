@@ -1,6 +1,6 @@
 #include "rectangle.h"
 
-Rectangle::Rectangle(QPointF point) : Figure(point)
+Rectangle::Rectangle(QPointF point) : Shape(point)
 {
     Q_UNUSED(point)
 }
