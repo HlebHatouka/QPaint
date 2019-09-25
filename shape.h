@@ -19,19 +19,24 @@ public:
     QPointF getStartPoint() const;
     QPointF getEndPoint() const;
 
-    void setStartPoint(const QPointF point);
-    virtual void setEndPoint(const QPointF point);
+    void setStartPoint(const QPointF &point);
+    virtual void setEndPoint(const QPointF &point); //TODO polygon
 
     void addLine(QGraphicsLineItem *line, bool is_first);
 
 protected:
     //QRectF rect;
+    bool touched;
     QPointF start_point;
     QPointF end_point;
+    QPointF center;
+    void updateCenter(const QPointF &new_pos = QPointF());
+    QRectF boundingRect() const override;
 
 private:
-    QRectF boundingRect() const override;
-    virtual void updatePoints();
+
+    virtual void updatePoints(const QPointF &start); //TODO polygon
+
     struct Lines
     {
         QGraphicsLineItem *line;
@@ -41,7 +46,7 @@ private:
     QVector<Lines> added_lines;
 
     QVariant itemChange(GraphicsItemChange change, const QVariant &value) override;
-    void moveLineToCenter(QPointF new_pos);
+    void moveLinesToCenter();
 
 };
 

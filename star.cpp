@@ -19,66 +19,40 @@ void Star::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWid
                 qAbs(getEndPoint().x() - getStartPoint().x()),
                 qAbs(getEndPoint().y() - getStartPoint().y()));
 
-    qreal halfWidthEllipse = rect.width()/2;
-    qreal halfHeightEllipse = rect.height()/2;
+    qreal halfWidth = rect.width()/2;
+    qreal halfHeight= rect.height()/2;
     qreal Xcenter = rect.center().x();
     qreal Ycenter = rect.center().y();
 
-/*
-    qreal R18 = (halfHeightEllipse*halfWidthEllipse)
-            / sqrt(pow(halfWidthEllipse, 2)*pow(sin(18*3.1415/180), 2)
-                    + pow(halfHeightEllipse, 2)*pow(cos(18*3.1415/180) , 2));
-    qreal R144 = (halfHeightEllipse*halfWidthEllipse)
-            / sqrt(pow(halfWidthEllipse, 2)*pow(sin((-144)*3.1415/180), 2)
-                    + pow(halfHeightEllipse, 2)*pow(cos((-144)*3.1415/180) , 2));
+    star << QPoint (Xcenter, Ycenter - halfHeight)
 
-    qreal CD = halfWidthEllipse*cos(18*3.1415/180)/3;
-    qreal CDy = halfWidthEllipse*sin(18*3.1415/180)*2;
-    qreal CDx = sqrt (pow(x,2) - pow(y,2));
-    qreal DcenterX = -z +halfWidthEllipse*cos(18*3.1415/180)/2;
+         << QPoint (Xcenter + halfWidth * sin(13*3.1415/180),
+                    Ycenter - halfHeight * sin(18*3.1415/180))
 
-    //QPoint (Xcenter+halfWidthEllipse*sin(36*3.1415/180),
-                         //Ycenter+halfHeightEllipse*sin(36*3.1415/180)/2)//D
-*/
+         << QPoint (Xcenter + halfWidth * cos(18*3.1415/180),
+                    Ycenter - halfHeight * sin(18*3.1415/180))
 
-    star << QPoint (Xcenter, Ycenter - halfHeightEllipse)
+         << QPoint (Xcenter + halfWidth * sin(18*3.1415/180),
+                    Ycenter + halfHeight * sin(18*3.1415/180)/2)
 
-         << QPoint (Xcenter + halfWidthEllipse * sin(13*3.1415/180),
-                    Ycenter - halfHeightEllipse * sin(18*3.1415/180))
+         << QPoint (Xcenter + halfWidth * sin(36*3.1415/180),
+                    Ycenter + halfHeight * cos(36*3.1415/180))
 
-         << QPoint (Xcenter + halfWidthEllipse * cos(18*3.1415/180),
-                    Ycenter - halfHeightEllipse * sin(18*3.1415/180))
+         << QPoint (Xcenter, Ycenter + halfHeight / 3)
 
-         << QPoint (Xcenter + halfWidthEllipse * sin(18*3.1415/180),
-                    Ycenter + halfHeightEllipse * sin(18*3.1415/180)/2)
+         << QPoint (Xcenter - halfWidth * sin(36*3.1415/180),
+                    Ycenter + halfHeight * cos(36*3.1415/180))
 
-         << QPoint (Xcenter + halfWidthEllipse * sin(36*3.1415/180),
-                    Ycenter + halfHeightEllipse * cos(36*3.1415/180))
+         << QPoint (Xcenter - halfWidth * sin(18*3.1415/180),
+                    Ycenter + halfHeight * sin(18*3.1415/180)/2)
 
-         << QPoint (Xcenter, Ycenter + halfHeightEllipse / 3)
+         << QPoint (Xcenter - halfWidth * cos(18*3.1415/180),
+                    Ycenter - halfHeight * sin(18*3.1415/180))
 
-         << QPoint (Xcenter - halfWidthEllipse * sin(36*3.1415/180),
-                    Ycenter + halfHeightEllipse * cos(36*3.1415/180))
+         << QPoint (Xcenter - halfWidth * sin(13*3.1415/180),
+                    Ycenter - halfHeight * sin(18*3.1415/180))
 
-         << QPoint (Xcenter - halfWidthEllipse * sin(18*3.1415/180),
-                    Ycenter + halfHeightEllipse * sin(18*3.1415/180)/2)
-
-         << QPoint (Xcenter - halfWidthEllipse * cos(18*3.1415/180),
-                    Ycenter - halfHeightEllipse * sin(18*3.1415/180))
-
-         << QPoint (Xcenter - halfWidthEllipse * sin(13*3.1415/180),
-                    Ycenter - halfHeightEllipse * sin(18*3.1415/180))
-
-         << QPoint (Xcenter, Ycenter - halfHeightEllipse);
-
-/*
-    star << QPoint(Xcenter-R18, Ycenter+R18)
-         << QPoint(Xcenter, Ycenter-halfHeightEllipse*2)
-         << QPoint(Xcenter+R18, Ycenter+R18)
-         << QPoint(Xcenter-R18, Ycenter-R18)
-         << QPoint(Xcenter+R18, Ycenter-R18)
-         << QPoint(Xcenter-R18, Ycenter+R18);
-*/
+         << QPoint (Xcenter, Ycenter - halfHeight);
 
     painter->setPen(Qt::black);
     painter->setBrush(Qt::blue);

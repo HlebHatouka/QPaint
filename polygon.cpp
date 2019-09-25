@@ -29,7 +29,7 @@ void Polygon::setSide (QGraphicsLineItem *side)
         polygon_ended = true;
 
     }
-    updatePoints();
+    updatePoints(QPointF());
 }
 
 bool Polygon::isEnded()
@@ -37,7 +37,7 @@ bool Polygon::isEnded()
     return polygon_ended;
 }
 
-void Polygon::setEndPoint(const QPointF point)
+void Polygon::setEndPoint(const QPointF &point)
 {
     this->end_point = point;
 }
@@ -57,7 +57,7 @@ QRectF Polygon::boundingRect() const
     return QRectF(left_up_pointRect, right_down_pointRect);
 }
 
-void Polygon::updatePoints()
+void Polygon::updatePoints(const QPointF &start)
 {
     QGraphicsLineItem *p2_with_min_x = *std::min_element(sides.begin(), sides.end(), Polygon::xPredicate);
     QGraphicsLineItem *p2_with_min_y = *std::min_element(sides.begin(), sides.end(), Polygon::yPredicate);

@@ -32,7 +32,8 @@ void PaintDesk::setFirstTouchIsNull()
     this->first_touch = QPointF();
 }
 
-void PaintDesk::addItemToDesk(QGraphicsSceneMouseEvent *event = nullptr, Shape *temp_Shape = nullptr)
+void PaintDesk::addItemToDesk(QGraphicsSceneMouseEvent *event = nullptr,
+                              Shape *temp_Shape = nullptr)
 {
     if(event != nullptr && temp_Shape != nullptr)
     {
@@ -44,7 +45,7 @@ void PaintDesk::addItemToDesk(QGraphicsSceneMouseEvent *event = nullptr, Shape *
     this->temp_Shape->setFlag(QGraphicsItem::ItemSendsScenePositionChanges);
 }
 
-void PaintDesk::uniteShapesWithLine(QPointF &&second_touch)
+void PaintDesk::uniteShapesWithLine(const QPointF &second_touch)
 {
     Shape  *first_Shape = (dynamic_cast<Shape *>(this->items(first_touch).first()));
     Shape  *second_Shape = (dynamic_cast<Shape *>(this->items(second_touch).first()));
@@ -62,21 +63,18 @@ void PaintDesk::mousePressEvent(QGraphicsSceneMouseEvent *event)
     {
         case NoMode:
         {
-            //if(auto touch = this->items(event->scenePos()); !(touch.isEmpty()))
-                //touch.first()->setCursor(QCursor(Qt::ClosedHandCursor));
             QGraphicsScene::mousePressEvent(event);
             break;
         }
         case UnitMode:
         {
-            if(first_touch.isNull())
+            if (!(this->items(event->scenePos()).isEmpty()))
             {
-                if(!(this->items(event->scenePos()).isEmpty()))
+                if (first_touch.isNull())
                     first_touch = event->scenePos();
+                else if (this->items(first_touch).first() != this->items(event->scenePos()).first())
+                    uniteShapesWithLine(event->scenePos());
             }
-            else if(!(this->items(event->scenePos()).isEmpty()) &&
-                    this->items(first_touch).first() != this->items(event->scenePos()).first())
-                uniteShapesWithLine(event->scenePos());
             break;
         }
         case StarMode:
