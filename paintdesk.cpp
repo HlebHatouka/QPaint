@@ -1,6 +1,4 @@
 #include "paintdesk.h"
-#include <QException>
-#include <iostream>
 
 PaintDesk::PaintDesk(QObject *parent) : QGraphicsScene(parent)
 {

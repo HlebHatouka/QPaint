@@ -25,6 +25,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 CONFIG += c++1z
 
 SOURCES += \
+    factory.cpp \
         main.cpp \
         mainwindow.cpp \
     paintdesk.cpp \
@@ -35,6 +36,7 @@ SOURCES += \
     polygon.cpp
 
 HEADERS += \
+    factory.h \
         mainwindow.h \
     paintdesk.h \
     rectangle.h \
