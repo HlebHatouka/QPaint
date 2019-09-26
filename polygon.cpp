@@ -2,7 +2,7 @@
 
 Polygon::Polygon(QPointF point) : Shape(point)
 {
-    polygon_ended = false;
+    //polygon_ended = false;
     left_up_pointRect = QPointF();
     right_down_pointRect = QPointF();
     polygon = QVector<QPoint>();
@@ -26,20 +26,10 @@ void Polygon::setSide (QGraphicsLineItem *side)
         //(*sides.begin())->line().p1() = (*(sides.end()-1))->line().p2();
         for (auto &side : sides)
             polygon << side->line().p2().toPoint();
-        polygon_ended = true;
+        is_ended = true;
 
     }
-    updatePoints(QPointF());
-}
-
-bool Polygon::isEnded()
-{
-    return polygon_ended;
-}
-
-void Polygon::setEndPoint(const QPointF &point)
-{
-    this->end_point = point;
+    updatePoints();
 }
 
 bool Polygon::xPredicate(const QGraphicsLineItem *first, const QGraphicsLineItem *second)
@@ -57,7 +47,7 @@ QRectF Polygon::boundingRect() const
     return QRectF(left_up_pointRect, right_down_pointRect);
 }
 
-void Polygon::updatePoints(const QPointF &start)
+void Polygon::updatePoints()
 {
     QGraphicsLineItem *p2_with_min_x = *std::min_element(sides.begin(), sides.end(), Polygon::xPredicate);
     QGraphicsLineItem *p2_with_min_y = *std::min_element(sides.begin(), sides.end(), Polygon::yPredicate);
@@ -66,8 +56,7 @@ void Polygon::updatePoints(const QPointF &start)
 
     left_up_pointRect = QPointF(p2_with_min_x->line().p2().x(), p2_with_min_y->line().p2().y());
     right_down_pointRect = QPointF(p2_with_max_x->line().p2().x(), p2_with_max_y->line().p2().y());
-
-    //boundingRect();
+    updateCenter();
 }
 
 void Polygon::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)

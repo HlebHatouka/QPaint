@@ -45,10 +45,3 @@ void MainWindow::on_hand_Button_clicked()
 {
     paint_desk->setMode(PaintDesk::NoMode);
 }
-
-void MainWindow::on_clean_Button_clicked()
-{
-    paint_desk->setMode(PaintDesk::NoMode);
-    //paint_desk->clear();
-    //paint_desk->update();
-}

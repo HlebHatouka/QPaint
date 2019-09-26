@@ -58,6 +58,6 @@ void Star::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWid
     painter->setBrush(Qt::blue);
 
     painter->drawPolygon(star);
-    Q_UNUSED(option);
-    Q_UNUSED(widget);
+    Q_UNUSED(option)
+    Q_UNUSED(widget)
 }

@@ -4,7 +4,6 @@
 #include <QGraphicsScene>
 #include <QGraphicsSceneMouseEvent>
 #include <QList>
-#include <QCursor>
 #include "star.h"
 #include "rectangle.h"
 #include "ellipse.h"
@@ -39,7 +38,6 @@ private:
 
     void mousePressEvent(QGraphicsSceneMouseEvent * event);
     void mouseMoveEvent(QGraphicsSceneMouseEvent *event);
-    //void mouseReleaseEvent (QGraphicsSceneMouseEvent *event);
     void mouseDoubleClickEvent(QGraphicsSceneMouseEvent *event);
 };
 

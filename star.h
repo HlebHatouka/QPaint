@@ -2,7 +2,6 @@
 #define STAR_H
 
 #include "shape.h"
-#include <QGraphicsObject>
 #include <cmath>
 
 class Star : public Shape

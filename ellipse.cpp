@@ -22,7 +22,7 @@ void Ellipse::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, Q
 
     painter->drawEllipse(rect);
 
-    Q_UNUSED(option);
-    Q_UNUSED(widget);
+    Q_UNUSED(option)
+    Q_UNUSED(widget)
 }
 

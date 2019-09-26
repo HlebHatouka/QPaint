@@ -2,11 +2,9 @@
 #define Shape_H
 
 #include <QGraphicsObject>
-#include <QGraphicsSceneMouseEvent>
 #include <QPainter>
 #include <QGraphicsLineItem>
 #include <QVector>
-//#include <QCursor>
 
 class Shape : public QGraphicsObject
 {
@@ -20,23 +18,19 @@ public:
     QPointF getEndPoint() const;
 
     void setStartPoint(const QPointF &point);
-    virtual void setEndPoint(const QPointF &point); //TODO polygon
-
+    void setEndPoint(const QPointF &point);
+    bool isEnded() const;
     void addLine(QGraphicsLineItem *line, bool is_first);
 
 protected:
-    //QRectF rect;
-    bool touched;
+    bool is_ended;
     QPointF start_point;
     QPointF end_point;
     QPointF center;
-    void updateCenter(const QPointF &new_pos = QPointF());
     QRectF boundingRect() const override;
+    void updateCenter(const QPointF &new_pos = QPointF());
 
 private:
-
-    virtual void updatePoints(const QPointF &start); //TODO polygon
-
     struct Lines
     {
         QGraphicsLineItem *line;
@@ -47,7 +41,6 @@ private:
 
     QVariant itemChange(GraphicsItemChange change, const QVariant &value) override;
     void moveLinesToCenter();
-
 };
 
 #endif // Shape_H

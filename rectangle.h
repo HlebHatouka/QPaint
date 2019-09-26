@@ -2,7 +2,6 @@
 #define RECTANGLE_H
 
 #include "shape.h"
-#include <QGraphicsObject>
 
 class Rectangle : public Shape
 {

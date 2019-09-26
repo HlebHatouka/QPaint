@@ -32,8 +32,6 @@ private slots:
 
     void on_hand_Button_clicked();
 
-    void on_clean_Button_clicked();
-
 private:
     Ui::MainWindow *ui;
     PaintDesk *paint_desk;
