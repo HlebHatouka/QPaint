@@ -1,12 +1,14 @@
 #include "paintdesk.h"
 
-PaintDesk::PaintDesk(QObject *parent) : QGraphicsScene(parent)
+PaintDesk::PaintDesk(QObject *parent) :
+                    QGraphicsScene(parent),
+                    mode(PaintDesk::NoMode),
+                    first_touch(QPointF()),
+                    temp_Shape(nullptr),
+                    line(nullptr),
+                    sides_of_Polygon(QList<QGraphicsLineItem *>())
 {
-    setMode(PaintDesk::NoMode);
-    first_touch = QPointF();
-    temp_Shape = nullptr;
-    line = nullptr;
-    sides_of_Polygon = QList<QGraphicsLineItem *>();
+
 }
 
 PaintDesk::~PaintDesk()
