@@ -13,9 +13,11 @@ public:
     explicit Polygon(QPointF point);
     ~Polygon();
 
+    bool isEnded() const;
     void setSide (QGraphicsLineItem *side);
 
 private:
+    bool is_ended;
     QPointF left_up_pointRect;
     QPointF right_down_pointRect;
     QVector<QPoint> polygon;

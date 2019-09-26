@@ -33,7 +33,7 @@ private:
     Shape *temp_Shape;
     QGraphicsLineItem *line;
     QList<QGraphicsLineItem *> sides_of_Polygon;
-    void addItemToDesk(QGraphicsSceneMouseEvent *event, Shape *temp_Shape);
+    void addShapeToDesk(QGraphicsSceneMouseEvent *event, Shape *temp_Shape);
     void uniteShapesWithLine(const QPointF &second_touch);
 
     void mousePressEvent(QGraphicsSceneMouseEvent * event);

@@ -2,7 +2,7 @@
 #include <iostream>
 
 Shape::Shape(QPointF point, QObject *parent) :
-    QGraphicsObject(), is_ended(false)
+    QGraphicsObject()
 {
     this->setStartPoint(mapFromScene(point));
     this->setEndPoint(mapFromScene(point));
@@ -33,11 +33,6 @@ QPointF Shape::getStartPoint() const
 QPointF Shape::getEndPoint() const
 {
     return end_point;
-}
-
-bool Shape::isEnded() const
-{
-    return is_ended;
 }
 
 QRectF Shape::boundingRect() const

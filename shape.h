@@ -12,18 +12,17 @@ class Shape : public QGraphicsObject
 
 public:
     explicit Shape(QPointF point, QObject *parent = nullptr);
-    ~Shape();
+    virtual ~Shape();
 
     QPointF getStartPoint() const;
     QPointF getEndPoint() const;
 
     void setStartPoint(const QPointF &point);
     void setEndPoint(const QPointF &point);
-    bool isEnded() const;
     void addLine(QGraphicsLineItem *line, bool is_first);
 
 protected:
-    bool is_ended;
+
     QPointF start_point;
     QPointF end_point;
     QPointF center;

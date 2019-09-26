@@ -30,7 +30,7 @@ void PaintDesk::setFirstTouchIsNull()
     this->first_touch = QPointF();
 }
 
-void PaintDesk::addItemToDesk(QGraphicsSceneMouseEvent *event = nullptr,
+void PaintDesk::addShapeToDesk(QGraphicsSceneMouseEvent *event = nullptr,
                               Shape *temp_Shape = nullptr)
 {
     if(event != nullptr && temp_Shape != nullptr)
@@ -77,17 +77,17 @@ void PaintDesk::mousePressEvent(QGraphicsSceneMouseEvent *event)
         }
         case StarMode:
         {
-            addItemToDesk(event, new Star(event->scenePos()));
+            addShapeToDesk(event, new Star(event->scenePos()));
             break;
         }
         case EllipseMode:
         {
-            addItemToDesk(event, new Ellipse(event->scenePos()));
+            addShapeToDesk(event, new Ellipse(event->scenePos()));
             break;
         }
         case RectangleMode:
         {
-             addItemToDesk(event, new Rectangle(event->scenePos()));
+             addShapeToDesk(event, new Rectangle(event->scenePos()));
              break;
         }
         case PolygonMode:
@@ -108,7 +108,7 @@ void PaintDesk::mousePressEvent(QGraphicsSceneMouseEvent *event)
 
                 if (dynamic_cast<Polygon *>(temp_Shape)->isEnded())
                 {
-                    addItemToDesk();
+                    addShapeToDesk();
                     for (auto &side : sides_of_Polygon)
                         delete  side;
                     sides_of_Polygon.clear();

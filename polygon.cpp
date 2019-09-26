@@ -1,18 +1,23 @@
 #include "polygon.h"
 
-Polygon::Polygon(QPointF point) : Shape(point)
+Polygon::Polygon(QPointF point) :
+                Shape(point), is_ended(false),
+                left_up_pointRect(QPointF()),
+                right_down_pointRect(QPointF()),
+                polygon(QVector<QPoint>()),
+                sides(QVector<QGraphicsLineItem *>())
 {
-    //polygon_ended = false;
-    left_up_pointRect = QPointF();
-    right_down_pointRect = QPointF();
-    polygon = QVector<QPoint>();
-    sides = QVector<QGraphicsLineItem *>();
     Q_UNUSED(point)
 }
 
 Polygon::~Polygon()
 {
 
+}
+
+bool Polygon::isEnded() const
+{
+    return is_ended;
 }
 
 void Polygon::setSide (QGraphicsLineItem *side)
