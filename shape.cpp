@@ -2,7 +2,7 @@
 #include <iostream>
 
 Shape::Shape(QPointF point, QObject *parent) :
-    QGraphicsObject()
+            QGraphicsObject()
 {
     this->setStartPoint(mapFromScene(point));
     this->setEndPoint(mapFromScene(point));
