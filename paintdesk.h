@@ -25,7 +25,6 @@ public:
 
     Mode getMode() const;
     void setMode(const PaintDesk::Mode mode);
-    void setFirstTouchIsNull();
 
 private:
     Mode mode;
@@ -33,6 +32,7 @@ private:
     Shape *temp_Shape;
     QGraphicsLineItem *line;
     QList<QGraphicsLineItem *> sides_of_Polygon;
+    void setFirstTouchIsNull();
     void addShapeToDesk(QGraphicsSceneMouseEvent *event, Shape *temp_Shape);
     void uniteShapesWithLine(const QPointF &second_touch);
 
